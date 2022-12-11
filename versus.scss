@@ -1,0 +1,586 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    
+}
+li,
+ol,
+ul {
+    list-style: none;
+    margin: 0;
+}
+img{
+    vertical-align: top;
+}
+
+body {
+    font-family: 'Lato';
+    &.locked {
+        overflow: hidden;
+    }
+}
+
+.wrapper {
+    overflow: hidden;
+    min-height: 100%;
+}
+
+.container {
+    max-width: 970px;
+    margin: 0 auto;
+    padding: 0 15px;
+    
+    
+    @media(max-width:1176px){
+        &.container{
+            max-width: 970px;
+        }
+ }
+
+ @media(max-width:992px){
+    &.container{
+        max-width: 750px;
+    }
+}
+
+@media(max-width:767px){
+    &.container{
+        max-width: none;
+    }
+}
+
+}
+
+
+@media(max-width:1176px){
+}
+
+@media(max-width:992px){
+}
+
+@media(max-width:767px){
+}
+
+.hero__bg {
+    background: url(/versus/hero-bg.png) no-repeat center;
+
+}
+
+nav {
+    
+}
+    .navbar {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding-top: 40px;
+        padding-bottom: 15px;
+        align-items: center;
+        padding-left: 15px;
+        padding-right: 20px;
+
+        @media(max-width:992px){
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+    }
+
+
+    .navbar__logo {
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 125%;
+        color: #FFFFFF;
+        transition: color .3s ease;
+        &:hover {
+            color: darken(#FFFFFF, 25%);
+        }
+       }
+    
+
+    .menu {
+        display: flex;
+        @media(max-width: 767px){
+            display: none;
+        }
+        &.active{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+        }
+
+            &__item {
+                margin-left: 25px;
+            }
+
+            &__item-link {
+                color: white;
+            }
+        }
+    
+
+
+
+// ***************************** Burger menu ******************** / /
+.burger {
+    display: flex;
+    cursor: pointer;
+    
+}
+
+// Тут указываем тот брейкпоинт, на котором нам нужно прятать обычное меню и показывать уже бургер.
+// Тут же это значение ставим в файле navbar.js
+@media(max-width:767px) {
+    .menu {
+        &.active{
+        position: fixed;
+        background: #131418;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
+        clip-path: circle(1200px at 90% - 30%);
+        -webkit-clip-path: (1200px at 90% - 30%);
+        pointer-events: all;
+        z-index: 90;
+        }
+        
+        .menu__item {
+            margin-left: 0;
+
+            &:hover {
+                .menu__item-link {
+                    transform:translateY(-50px);
+        
+                    &::before {
+                        pointer-events: all;
+                    }
+        
+                }
+            }
+
+        }
+
+        .menu__item-link {
+            font-size: 18px;
+        }
+    }
+}
+
+.burger {
+
+    transition: .3s all ease;
+        &:hover {
+            transform: scale(1.2);
+        }
+
+    @media(min-width: 767.98px){
+        display: none;
+    }
+
+    display: block;
+    position: relative;
+    height: 20px;
+    width: 30px;
+    z-index: 102;
+    cursor: pointer;
+
+    &.active-burger {
+        transition: .3s all ease;
+        &:hover {
+            transform: scale(1.2);
+        }
+        &:before {
+            background: rgb(255, 255, 255);
+            transform: rotate(45deg);
+            transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) .3s all;
+            top: 8px;
+        }
+        &:after {
+            background: rgb(255, 255, 255);
+            transform: rotate(-45deg);
+            transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) .3s all;
+            bottom: 10px;
+        }
+        & span {
+            transform: scale(0);
+        }
+    }
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: white;
+        transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) .3s all;
+        
+    }
+
+    &::before{
+        top: 0;
+    }
+
+    &::after{
+        bottom: 0;
+    }
+
+    span {
+        position: absolute;
+        top: 9px;
+        right: 0;
+        width: 100%;
+        background: white;
+        height: 2px;
+        transform: scale(1);
+        transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) .3s all;
+    }
+
+    
+}
+
+.menu__item {
+    overflow: hidden;
+
+    &:hover {
+        .menu__item-link {
+            transform:translateY(-30px);
+
+            &::before {
+                pointer-events: all;
+            }
+
+            @media(max-width:992px){
+                transform:translateY(-37px);
+            }
+        }
+    }
+}
+
+.menu__item-link {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 155%;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #999999;
+    font-style: normal;
+    transition: color .3s ease, transform 0.45s ease;
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    
+    &:hover {
+        color: #00D6B4;
+        
+
+    }
+
+    &::before {
+        content: attr(title);
+        pointer-events: none;
+        position: absolute;
+        top: 175%;
+        display: block;
+    }
+
+    @media(max-width:992px){
+        font-size: 14px;
+    }
+
+
+}
+
+.section {
+
+    // .section__hero
+
+    &__hero {
+        padding: 137px 0;
+
+        @media(max-width:992px){
+            padding: 100px 0;
+        }
+
+        @media(max-width:767px){
+            padding: 75px 0;
+        }
+
+        @media(max-width:480px){
+            padding: 50px 0;
+        }
+    }
+}
+
+.hero {
+
+    // .hero__title
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    &__title {
+        font-weight: 400;
+        font-size: 48px;
+        line-height: 110%;
+        text-align: center;
+        color: #FFFFFF;
+        max-width: 465px;
+
+        @media(max-width:992px){
+            font-size: 38px;
+        }
+
+        @media(max-width:767px){
+            font-size: 32px;
+        }
+
+        @media(max-width:480px){
+            font-size: 28px;
+        }
+    }
+
+    // .hero__btn
+
+    &__btn {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 146%;
+        text-align: center;
+        text-transform: uppercase;
+        color: #00D6B4;
+        border: 1px solid #00D6B4;
+        border-radius: 3px;
+        padding: 10px 26px;
+        position: relative;
+        z-index: 2;
+        transition: color .2s ease;
+        &::before {
+            content: '';
+            height: 100%;
+            width: 0;
+            position: absolute;
+            background: #000;
+            top: 0;
+            left: 0;
+            display: block;
+            transition: width .3s ease;
+            z-index: -1;
+        }
+
+        &:hover {
+            border: none;
+            padding: 11px 27px;
+            color: white;
+            &::before {
+                width: 100%;
+            }
+        }
+
+        @media(max-width:480px){
+            width: 100%;
+        }
+    }
+}
+
+.section {
+
+    // .section__latest
+
+    &__latest {
+        background: #222222;
+        padding-bottom: 101px;
+        
+        @media(max-width:992px){
+            padding-bottom: 50px;
+        }
+
+        @media(max-width:767px){
+            padding-bottom: 25px;
+        }
+
+    }
+}
+
+.latest {
+
+    // .latest__title
+
+    &__title {
+        font-weight: 400;
+        font-size: 25px;
+        line-height: 120%;
+        color: #FFFFFF;
+        max-width: fit-content;
+        margin: 0 auto;
+        position: relative;
+
+        &::before {
+            content: '';
+            width: 140px;
+            background: #00D6B4;
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            height: 3px;
+            transform: scaleX(0);
+            transition: .5s transform ease;
+            transform-origin: right;
+        }
+
+        &:hover {
+            &::before {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+        }
+    }
+
+    // .latest__body
+
+    &__body {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 33px;
+    }
+
+    // .latest__link
+
+    &__link {
+        max-width: fit-content;
+        position: relative;
+        overflow: hidden;
+        &::before {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.226);
+            top: 0;
+            left: 0;
+            z-index: 10;
+            transition: transform .3s ease;
+        }
+
+        &:hover {
+            &::before {
+                display: none;
+            }
+
+            .latest__img {
+                transform: scale(1.07);
+
+            }
+        }
+    }
+
+    // .latest__img
+
+    &__img {
+        width: 100%;
+        height: auto;
+        transition: transform .3s ease;
+        cursor: pointer;
+
+        &:hover {
+            
+        }
+    }
+}
+
+.footer {
+
+    // .footer__title
+
+    &__title {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 122%;
+        text-align: center;
+        text-transform: uppercase;
+        color: #C2C2C2;
+    }
+}
+.footer {
+    padding: 35px 0;
+    background: #222222;
+    // .foooter__text
+
+    &__text {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 150%;
+        text-align: center;
+        color: #999999;
+        margin-top: 10px;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    
+    // .form__section
+
+    &__section {
+        background-color: #222222;
+        padding: 75px 0;
+    }
+
+    // .form__name-label
+
+    &__name-label {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        color: white;
+        max-width: 320px;
+        width: 100%;
+    }
+
+    // .form__name
+
+    &__name {
+        padding: 15px;
+        outline: none;
+    }
+
+    // .form__email-label
+
+    &__email-label {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        color: white;
+        max-width: 320px;
+        width: 100%;
+    }
+
+    // .form__email
+
+    &__email {
+        padding: 15px;
+        outline: none;
+    }
+
+    &__btn {
+        padding: 10px;
+        background-color: transparent;
+        border: 1px solid green;
+        color: white;
+        cursor: pointer;
+    }
+}
+
