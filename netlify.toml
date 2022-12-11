@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/*"
+  to = "/versus.html"
+  status = 200
